@@ -2080,9 +2080,12 @@
     var orig = q.init.bind(q);
     q.init = function (e) {
       var server = selectedServer();
-      var ret = withSink(function () {
-        return orig(e);
-      });
+      var ret;
+      if (!isSenpaSelected()) {
+        ret = withSink(function () {
+          return orig(e);
+        });
+      }
       if (server) {
         var live = st.authOk && st.server && st.server.id === server.id;
         if (!live) connectSelected("q.init");

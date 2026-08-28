@@ -1,9 +1,13 @@
 // ==UserScript==
-// @name         HSLO Senpa Dual/FFA
+// @name         HSLO Senpa FFA (Vercel)
+// @homepageURL  https://github.com/Shrkawyy/hslo-onyx-ffa
+// @supportURL   https://github.com/Shrkawyy/hslo-onyx-ffa/issues
+// @updateURL    https://raw.githubusercontent.com/Shrkawyy/hslo-onyx-ffa/main/HSLO-Senpa.user.js
+// @downloadURL  https://raw.githubusercontent.com/Shrkawyy/hslo-onyx-ffa/main/HSLO-Senpa.user.js
 // @namespace    https://hslo.local/senpa
-// @version      1.2.14
-// @description  Loads HSLO 5.4.0 on senpa.io with EU Dual and FFA Europe (eu.senpa.io:2001). Multibox untouched.
-// @author       HSLO
+// @version      1.4.0
+// @description  Loads the deployed HSLO 5.4.0 client on senpa.io with ONYX-compatible FFA and EU Dual support.
+// @author       Shrkawy
 // @match        https://senpa.io/*
 // @match        https://www.senpa.io/*
 // @run-at       document-start
@@ -19,9 +23,10 @@
 (function () {
   "use strict";
 
-  var DEFAULT_BASE_URL = "http://127.0.0.1:8765/";
-  var VERSION = "1.2.14";
+  var DEFAULT_BASE_URL = "https://hslo-onyx-khoej06ym-shrkawys-projects-3ca604fd.vercel.app/";
+  var VERSION = "1.4.0";
   var FALLBACK_BASES = [
+    DEFAULT_BASE_URL,
     "http://127.0.0.1:8765/",
     "http://localhost:8765/",
     "http://127.0.0.1:5500/",
@@ -54,6 +59,8 @@
     try {
       override = localStorage.getItem("hslo:base-url") || "";
     } catch (_) {}
+    // Ignore stale localhost values written by pre-1.3 releases; the deployed client is now primary.
+    if (/^http:\/\/(127\.0\.0\.1|localhost)(?::\d+)?\//i.test(override)) override = "";
     return normalizeBaseUrl(override || DEFAULT_BASE_URL);
   }
 
@@ -94,6 +101,7 @@
     if (/tracker\.senpa\.io/i.test(s)) return false;
     if (/api\.senpa\.io\/(auth|skins|u\/)/i.test(s)) return false;
     if (/i\.imgur\.com/i.test(s)) return false;
+    if (/agar\.io\/mc\/agario\.js/i.test(s)) return true;
     if (/wss?:\/\/[^/]*senpa\.io/i.test(s)) return false;
     if (/senpa\.io\/web\/assets\//i.test(s)) return true;
     if (/main-[A-Za-z0-9_-]+\.(js|css)/i.test(s) && /senpa\.io/i.test(s)) return true;
