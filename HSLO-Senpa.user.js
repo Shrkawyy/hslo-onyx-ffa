@@ -5,7 +5,7 @@
 // @updateURL    https://raw.githubusercontent.com/Shrkawyy/hslo-onyx-ffa/main/HSLO-Senpa.user.js
 // @downloadURL  https://raw.githubusercontent.com/Shrkawyy/hslo-onyx-ffa/main/HSLO-Senpa.user.js
 // @namespace    https://hslo.local/senpa
-// @version      1.3.1
+// @version      1.4.0
 // @description  Loads the deployed HSLO 5.4.0 client on senpa.io with ONYX-compatible FFA and EU Dual support.
 // @author       Shrkawy
 // @match        https://senpa.io/*
@@ -23,8 +23,8 @@
 (function () {
   "use strict";
 
-  var DEFAULT_BASE_URL = "https://hslo-onyx-khoej06ym-shrkawys-projects-3ca604fd.vercel.app/";
-  var VERSION = "1.3.1";
+  var DEFAULT_BASE_URL = "https://hslo-onyx-ffa.vercel.app/";
+  var VERSION = "1.4.0";
   var FALLBACK_BASES = [
     DEFAULT_BASE_URL,
     "http://127.0.0.1:8765/",
@@ -101,6 +101,7 @@
     if (/tracker\.senpa\.io/i.test(s)) return false;
     if (/api\.senpa\.io\/(auth|skins|u\/)/i.test(s)) return false;
     if (/i\.imgur\.com/i.test(s)) return false;
+    if (/agar\.io\/mc\/agario\.js/i.test(s)) return true;
     if (/wss?:\/\/[^/]*senpa\.io/i.test(s)) return false;
     if (/senpa\.io\/web\/assets\//i.test(s)) return true;
     if (/main-[A-Za-z0-9_-]+\.(js|css)/i.test(s) && /senpa\.io/i.test(s)) return true;
