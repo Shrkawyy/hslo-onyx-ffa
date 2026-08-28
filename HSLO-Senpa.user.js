@@ -5,7 +5,7 @@
 // @updateURL    https://raw.githubusercontent.com/Shrkawyy/hslo-onyx-ffa/main/HSLO-Senpa.user.js
 // @downloadURL  https://raw.githubusercontent.com/Shrkawyy/hslo-onyx-ffa/main/HSLO-Senpa.user.js
 // @namespace    https://hslo.local/senpa
-// @version      1.4.0
+// @version      1.4.1
 // @description  Loads the deployed HSLO 5.4.0 client on senpa.io with ONYX-compatible FFA and EU Dual support.
 // @author       Shrkawy
 // @match        https://senpa.io/*
@@ -24,7 +24,7 @@
   "use strict";
 
   var DEFAULT_BASE_URL = "https://hslo-onyx-ffa.vercel.app/";
-  var VERSION = "1.4.0";
+  var VERSION = "1.4.1";
   var FALLBACK_BASES = [
     DEFAULT_BASE_URL,
     "http://127.0.0.1:8765/",
